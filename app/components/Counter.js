@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Counter.css';
+import ReactGesture from 'react-gesture';
 
 type Props = {
   increment: () => void,
@@ -18,8 +19,20 @@ export default class Counter extends Component<Props> {
     const {
       increment, incrementIfOdd, incrementAsync, decrement, counter
     } = this.props;
+    const blockStyle = {
+      width: 400,
+      height: 300,
+      backgroundColor: 'whitesmoke',
+    };
     return (
       <div>
+        <ReactGesture
+          swipeThreshold={50}
+          onSwipeUp={increment}
+          onHold={increment}
+          >
+          <div style={blockStyle} />
+        </ReactGesture>
         <div className={styles.backButton} data-tid="backButton">
           <Link to="/">
             <i className="fa fa-arrow-left fa-3x" />
